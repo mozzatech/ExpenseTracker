@@ -29,9 +29,10 @@ struct AddTransactionView: View {
     
     @State private var tran_isExp = true
     
-    
+
     var body: some View {
         NavigationView{
+
             VStack{
                 ToggleView(isExpense: $tran_isExp)
                 Form{
@@ -40,14 +41,13 @@ struct AddTransactionView: View {
                                 //.buttonStyle(PlainButtonStyle())
                         List(selection: $selection) {
                             ForEach(tran_isExp ? Category.expenseCategories : Category.incomeCategories, id: \.self) { item in
-                                HStack {
-                                    Text(item.name)
-                                }
+                                CategoriesView(category: item)
                             }
                         }
-                    }
+                    }.frame(height: 100)
                     Amount(amount: $tran_amount)
                     DatePicker("Date", selection: $tran_date, displayedComponents: [.date])
+                        .frame(height: 50)
                     ZStack (alignment: .leading) {
                         Text("Note").opacity(tran_note == "" ? 0.5 : 0)
                         TextEditor(text: $tran_note)

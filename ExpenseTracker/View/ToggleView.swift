@@ -1,15 +1,4 @@
-//
-//  ToggleView.swift
-//  ExpenseTracker
-//
-//  Created by HWorld on 10/19/22.
-//
-
 import SwiftUI
-
-
-
-
 
 // MARK: custom toggle style - onColor - offColor
 struct ColoredToggleStyle: ToggleStyle {

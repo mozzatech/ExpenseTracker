@@ -12,3 +12,6 @@ var transactionPreviewData = Transaction(date: "19/10/2022", amount: 11, type: "
 
 
 var transactionListPreviewData = [Transaction](repeating: transactionPreviewData, count: 10)
+
+
+var categoryPreviewData = Category.autoAndTransport
