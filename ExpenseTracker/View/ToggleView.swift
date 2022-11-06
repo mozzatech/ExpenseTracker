@@ -6,6 +6,8 @@ struct ColoredToggleStyle: ToggleStyle {
     var offColor = Color(.black)
     var thumbColor = Color.white
     
+    @Binding var categoryToBeCleaned : Category
+    
     func makeBody(configuration: Self.Configuration) -> some View {
         HStack {
             configuration.label // The text (or view) portion of the Toggle
@@ -20,7 +22,11 @@ struct ColoredToggleStyle: ToggleStyle {
                         .padding(1.5)
                         .offset(x: configuration.isOn ? 10 : -10))
                 .animation(Animation.easeInOut(duration: 0.2))
-                .onTapGesture { configuration.isOn.toggle() }
+                .onTapGesture {
+                    configuration.isOn.toggle()
+                    let toggleEvent = configuration.isOn ? Category.expenseCategories[0] : Category.incomeCategories[0]
+                    categoryToBeCleaned = toggleEvent
+                }
         }
         .font(.title)
         .padding(.horizontal)

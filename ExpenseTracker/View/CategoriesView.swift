@@ -8,13 +8,20 @@
 import SwiftUI
 import SwiftUIFontIcon
 
-struct CategoriesView: View {
+struct CategoriesView: View {    
+    let categories: [Category]
+    var body: some View {
+        CategoryBlock(category: categories[0])
+    }
+}
+
+struct CategoryBlock: View {
     let category: Category
-    
     var body: some View {
         RoundedRectangle(cornerRadius: 25)
             .frame(width: 95, height: 95)
             .foregroundColor(Color.primary)
+            //.strokeBorder(.blue, lineWidth: category == value ? 2 : 0)
             .overlay {
                 VStack{
                     FontIcon.text(.awesome5Solid(code: category.icon), fontsize: 45, color: Color.icon)
@@ -24,11 +31,13 @@ struct CategoriesView: View {
     }
 }
 
+
+
 struct CategoriesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            CategoriesView(category: categoryPreviewData)
-            CategoriesView(category: categoryPreviewData)
+            CategoriesView(categories: categoryPreviewData)
+            CategoriesView(categories: categoryPreviewData)
                 .preferredColorScheme(.dark)
         }
     }
