@@ -128,17 +128,16 @@ struct Amount: View {
     @Binding var amount: String
     
     var body: some View {
-        VStack(alignment: .trailing) {
+        HStack() {
             Text("Amount")
-                .font(.callout)
-                .bold()
-                .foregroundColor(.secondary)
+                //.bold()
+                //.foregroundColor(.secondary)
             TextField(0.currencyFormat, text: $amount)
                 .multilineTextAlignment(.trailing)
                 .keyboardType(.decimalPad)
                 .font(Font.largeTitle.bold())
-        }
-        .padding()
+        }.frame(height: 50)
+        //.padding()
     }
 }
 
@@ -169,8 +168,13 @@ struct AddTransactionView_Previews: PreviewProvider {
     }()
     
     static var previews: some View {
-        AddTransactionView(transactions: TransactionListViewModel(), selectedCategory: Category.autoAndTransport)
-            .environmentObject(transactionListVM)
+        Group {
+            AddTransactionView(transactions: TransactionListViewModel(), selectedCategory: Category.autoAndTransport)
+                .environmentObject(transactionListVM)
+            AddTransactionView(transactions: TransactionListViewModel(), selectedCategory: Category.autoAndTransport)
+                .preferredColorScheme(.dark)
+                .environmentObject(transactionListVM)
+        }
     }
         
 }
