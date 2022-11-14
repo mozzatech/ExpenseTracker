@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIFontIcon
 
 struct AddTransactionView: View {
     
@@ -18,7 +19,7 @@ struct AddTransactionView: View {
     /// we don't need to specify a type here, Swift can know what type it is based on the environment key we are trying to read
     @Environment(\.dismiss) var dismiss
     
-    @State private var popoverIsShowing = false
+    @State var popoverIsShowing = false
     
     @State var selectedCategory: Category
     @State private var selection: String?
@@ -29,33 +30,24 @@ struct AddTransactionView: View {
     
     @State private var tran_isExp = true
     
-    
+
     var body: some View {
         NavigationView{
-            VStack{
-                ToggleView(isExpense: $tran_isExp)
+
+            VStack(spacing: 0){
+                ToggleView(isExpense: $tran_isExp, category: $selectedCategory)
                 Form{
-                    Picker("Category", selection: $selectedCategory) {
-                        //CategorySelection(selectedCatergory: $selectedCategory)
-                                //.buttonStyle(PlainButtonStyle())
-                        List(selection: $selection) {
-                            ForEach(tran_isExp ? Category.expenseCategories : Category.incomeCategories, id: \.self) { item in
-                                HStack {
-                                    Text(item.name)
-                                }
-                            }
-                        }
+                    NavigationLink(destination: GridPicker(category: $selectedCategory, showExpenseList: $tran_isExp)) {
+                        Text("Category")
+                        Spacer()
+                        Text(selectedCategory.name)
                     }
+                    .frame(height: 50)
                     Amount(amount: $tran_amount)
                     DatePicker("Date", selection: $tran_date, displayedComponents: [.date])
-                    ZStack (alignment: .leading) {
-                        Text("Note").opacity(tran_note == "" ? 0.5 : 0)
-                        TextEditor(text: $tran_note)
-                            .padding(.leading, -3.0)
-                            .lineLimit(5)
-                            .multilineTextAlignment(.leading)
-                    }
+                        .frame(height: 50)
                 }
+                Notes(notes: $tran_note)
             }
             .padding(.top)
             //.navigationTitle("Add new transaction")
@@ -92,6 +84,7 @@ private extension AddTransactionView {
 struct ToggleView: View {
     
     @Binding var isExpense : Bool
+    @Binding var category : Category
     
     let three_columns = [
         GridItem(.flexible()),
@@ -107,9 +100,8 @@ struct ToggleView: View {
                 //.font(isExpense ? .body : .title3)
                 .frame(maxWidth: .infinity, alignment: .trailing)
             Toggle(isOn: $isExpense) {
-
             }
-            .toggleStyle(ColoredToggleStyle())
+            .toggleStyle(ColoredToggleStyle(categoryToBeCleaned: $category))
             .frame(maxWidth: .zero, alignment: .center)
             Text("Expense")
                 .fontWeight(.bold)
@@ -128,23 +120,22 @@ struct Amount: View {
     @Binding var amount: String
     
     var body: some View {
-        VStack(alignment: .trailing) {
+        HStack() {
             Text("Amount")
-                .font(.callout)
-                .bold()
-                .foregroundColor(.secondary)
+                //.bold()
+                //.foregroundColor(.secondary)
             TextField(0.currencyFormat, text: $amount)
                 .multilineTextAlignment(.trailing)
                 .keyboardType(.decimalPad)
                 .font(Font.largeTitle.bold())
-        }
-        .padding()
+        }.frame(height: 50)
+        //.padding()
     }
 }
 
 // MARK: - Selection
 struct CategorySelection: View {
-    @Binding var selectedCatergory: Category
+    @Binding var selectedCategory: Category
     
     var body: some View {
         HStack {
@@ -155,6 +146,50 @@ struct CategorySelection: View {
         .padding()
     }
 }
+
+// MARK: - Notes
+struct Notes: View {
+    @Binding var notes: String
+    
+    var body: some View {
+        Form{
+            ZStack (alignment: .leading) {
+                Text("Note").opacity(notes == "" ? 0.5 : 0)
+                TextEditor(text: $notes)
+                    .padding(.leading, -3.0)
+                    .lineLimit(5)
+                    .multilineTextAlignment(.leading)
+            }
+        }
+    }
+}
+
+
+// MARK: Category selection view
+struct GridPicker: View {
+    @Environment(\.dismiss) var dismiss
+    @Binding var category: Category
+    @Binding var showExpenseList: Bool
+
+    let columns: [GridItem] = Array(repeating: GridItem(.adaptive(minimum: 100), spacing: 20), count: 3)
+
+    var body: some View {
+        LazyVGrid(columns: columns) {
+            ForEach(showExpenseList ? Category.expenseCategories : Category.incomeCategories, id: \.self) { value in
+                CategoryBlock(category: value)
+                .onTapGesture {
+                    category = value
+                    dismiss()
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
+}
+
+
+
+
 
 
 
@@ -169,8 +204,13 @@ struct AddTransactionView_Previews: PreviewProvider {
     }()
     
     static var previews: some View {
-        AddTransactionView(transactions: TransactionListViewModel(), selectedCategory: Category.autoAndTransport)
-            .environmentObject(transactionListVM)
+        Group {
+            AddTransactionView(transactions: TransactionListViewModel(), selectedCategory: Category.autoAndTransport)
+                .environmentObject(transactionListVM)
+            AddTransactionView(transactions: TransactionListViewModel(), selectedCategory: Category.autoAndTransport)
+                .preferredColorScheme(.dark)
+                .environmentObject(transactionListVM)
+        }
     }
         
 }

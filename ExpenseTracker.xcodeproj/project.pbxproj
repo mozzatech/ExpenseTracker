@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C30B39E72917F5B2009B0069 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30B39E62917F5B2009B0069 /* CategoriesView.swift */; };
 		C31B274128FB05A700087B37 /* SwiftUIFontIcon in Frameworks */ = {isa = PBXBuildFile; productRef = C31B274028FB05A700087B37 /* SwiftUIFontIcon */; };
 		C31B274328FB083700087B37 /* TransactionListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31B274228FB083700087B37 /* TransactionListViewModel.swift */; };
 		C31F098028FCA69E007AF33A /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31F097F28FCA69E007AF33A /* AddTransactionView.swift */; };
+		C3223C0E292193470055698A /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3223C0D292193470055698A /* RatingView.swift */; };
 		C329D1F929007F5300EC6DB0 /* ToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C329D1F829007F5200EC6DB0 /* ToggleView.swift */; };
 		C32A2B6728FAECFA0083C5E2 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A2B6628FAECFA0083C5E2 /* ExpenseTrackerApp.swift */; };
 		C32A2B6928FAECFA0083C5E2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32A2B6828FAECFA0083C5E2 /* ContentView.swift */; };
@@ -28,8 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C30B39E62917F5B2009B0069 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		C31B274228FB083700087B37 /* TransactionListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionListViewModel.swift; sourceTree = "<group>"; };
 		C31F097F28FCA69E007AF33A /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
+		C3223C0D292193470055698A /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		C329D1F829007F5200EC6DB0 /* ToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleView.swift; sourceTree = "<group>"; };
 		C32A2B6328FAECFA0083C5E2 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C32A2B6628FAECFA0083C5E2 /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
@@ -118,6 +122,8 @@
 				C329D1F829007F5200EC6DB0 /* ToggleView.swift */,
 				C34D90C92903E64D000E6CBF /* TransactionList.swift */,
 				C3357C4D29052A2A0081DE03 /* SettingsView.swift */,
+				C30B39E62917F5B2009B0069 /* CategoriesView.swift */,
+				C3223C0D292193470055698A /* RatingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,8 +231,10 @@
 				C32A2B6928FAECFA0083C5E2 /* ContentView.swift in Sources */,
 				C32A2B7528FAEDF80083C5E2 /* Extensions.swift in Sources */,
 				C3357C4E29052A2A0081DE03 /* SettingsView.swift in Sources */,
+				C30B39E72917F5B2009B0069 /* CategoriesView.swift in Sources */,
 				C32A2B7B28FAF22E0083C5E2 /* TransactionRow.swift in Sources */,
 				C32A2B6728FAECFA0083C5E2 /* ExpenseTrackerApp.swift in Sources */,
+				C3223C0E292193470055698A /* RatingView.swift in Sources */,
 				C31B274328FB083700087B37 /* TransactionListViewModel.swift in Sources */,
 				C34D90CA2903E64D000E6CBF /* TransactionList.swift in Sources */,
 				C3BE228028FF0059005B1ECE /* AccountViewModel.swift in Sources */,

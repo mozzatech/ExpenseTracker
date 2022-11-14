@@ -60,8 +60,8 @@ struct Category: Hashable {
 }
 
 extension Category {
-    static let autoAndTransport = Category(id: 1, name: "Auto & Transports", icon: .car_alt, isExpense: true)
-    static let billsAndUtilities = Category(id: 2, name: "Bills & Utilities", icon: .file_invoice_dollar, isExpense: true)
+    static let autoAndTransport = Category(id: 1, name: "Transports", icon: .car_alt, isExpense: true)
+    static let billsAndUtilities = Category(id: 2, name: "Bills", icon: .file_invoice_dollar, isExpense: true)
     static let entertainment = Category(id: 3, name: "Entertainment", icon: .film, isExpense: true)
     
     static let salary = Category(id: 9, name: "Salary", icon: .cash_register, isExpense: false)
